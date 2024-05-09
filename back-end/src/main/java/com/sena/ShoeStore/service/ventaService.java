@@ -1,4 +1,4 @@
-package com.sena.shoestore.service;
+package com.sena.ShoeStore.service;
 
 import java.util.List;
 import java.util.Optional;
@@ -6,10 +6,10 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.sena.shoestore.controller.VentaController;
-import com.sena.shoestore.interfaceService.IVentaService;
-import com.sena.shoestore.interfaces.IVenta;
-import com.sena.shoestore.models.venta;
+import com.sena.ShoeStore.interfaceService.IVentaService;
+import com.sena.ShoeStore.interfaces.IVenta;
+import com.sena.ShoeStore.models.venta;
+
 
 
 
@@ -57,11 +57,6 @@ public class ventaService  implements IVentaService{
 		return 0;
 	}
 
-	@Override
-	public String save(VentaController venta) {
-		//  Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'save'");
-	}
 
 }
 

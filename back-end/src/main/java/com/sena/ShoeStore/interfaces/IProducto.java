@@ -1,4 +1,4 @@
-package com.sena.shoestore.interfaces;
+package com.sena.ShoeStore.interfaces;
 
 import org.springframework.stereotype.Repository;
 
@@ -7,7 +7,7 @@ import java.util.List;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
-import com.sena.shoestore.models.producto;
+import com.sena.ShoeStore.models.producto;
 
 @Repository
 public interface IProducto extends CrudRepository<producto,String>{

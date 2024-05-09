@@ -1,4 +1,4 @@
-package com.sena.shoestore.config;
+package com.sena.ShoeStore.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -1,4 +1,4 @@
-package com.sena.shoestore.controller;
+package com.sena.ShoeStore.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.sena.shoestore.interfaceService.IClienteService;
-import com.sena.shoestore.model.Cliente;
+import com.sena.ShoeStore.interfaceService.IClienteService;
+import com.sena.ShoeStore.models.cliente;
 
 @RequestMapping("/api/shoes/cliente")
 @RestController
@@ -25,46 +25,46 @@ public class ClienteController {
 	private IClienteService clienteService;
 	
 	@PostMapping("/")
-    public ResponseEntity<Object> save(@ModelAttribute("cliente") Cliente cliente) {
+    public ResponseEntity<Object> save(@ModelAttribute("cliente") cliente cliente) {
 
         // Verificar que no exista el documento de identidad
         var listaCliente = clienteService.findAll()
-                .stream().filter(clienteExistente -> clienteExistente.getIdCliente()
-                        .equals(cliente.getIdCliente()));
+                .stream().filter(clienteExistente -> clienteExistente.getId_cliente()
+                        .equals(cliente.getId_cliente()));
         if (listaCliente.count() != 0) {
             return new ResponseEntity<>("El cliente ya existe", HttpStatus.BAD_REQUEST);
         }
         
         // Añadir campos obligatorios
-        if (cliente.getTipoId().isEmpty()) {
+        if (cliente.getTipo_id().isEmpty()) {
             return new ResponseEntity<>("El tipo de identificación es un campo obligatorio", HttpStatus.BAD_REQUEST);
         }
 
-        if (cliente.getDocCliente().isEmpty()) {
+        if (cliente.getDoc_cliente().isEmpty()) {
             return new ResponseEntity<>("El número de documento es un campo obligatorio", HttpStatus.BAD_REQUEST);
         }
 
-        if (cliente.getNombreCliente().isEmpty()) {
+        if (cliente.getNombre_cliente().isEmpty()) {
             return new ResponseEntity<>("El nombre del cliente es un campo obligatorio", HttpStatus.BAD_REQUEST);
         }
 
-        if (cliente.getApellidoCliente().isEmpty()) {
+        if (cliente.getApellido_cliente().isEmpty()) {
             return new ResponseEntity<>("El apellido del cliente es un campo obligatorio", HttpStatus.BAD_REQUEST);
         }
 
-        if (cliente.getDireccionCliente().isEmpty()) {
+        if (cliente.getDireccion_cliente().isEmpty()) {
             return new ResponseEntity<>("La dirección es un campo obligatorio", HttpStatus.BAD_REQUEST);
         }
         
-        if (cliente.getCiudadCliente().isEmpty()) {
+        if (cliente.getCiudad_cliente().isEmpty()) {
             return new ResponseEntity<>("La ciudad es un campo obligatorio", HttpStatus.BAD_REQUEST);
         }
         
-        if (cliente.getCorreoCliente().isEmpty()) {
+        if (cliente.getCorreo_cliente().isEmpty()) {
             return new ResponseEntity<>("El correo es un campo obligatorio", HttpStatus.BAD_REQUEST);
         }
         
-        if (cliente.getEstadoCliente().isEmpty()) {
+        if (cliente.getEstado_cliente().isEmpty()) {
             return new ResponseEntity<>("El estado es un campo obligatorio", HttpStatus.BAD_REQUEST);
         }
         
@@ -100,17 +100,17 @@ public class ClienteController {
 	}
 	
 	@PutMapping("/{idCliente}")
-	public ResponseEntity<Object> update(@PathVariable String idCliente, @ModelAttribute("cliente") Cliente clienteUpdate){
+	public ResponseEntity<Object> update(@PathVariable String idCliente, @ModelAttribute("cliente") cliente clienteUpdate){
 	    var cliente = clienteService.findOne(idCliente);
 	    if (cliente.isPresent()) {
-	        cliente.get().setTipoId(clienteUpdate.getTipoId());
-	        cliente.get().setDocCliente(clienteUpdate.getDocCliente());
-	        cliente.get().setNombreCliente(clienteUpdate.getNombreCliente());
-	        cliente.get().setApellidoCliente(clienteUpdate.getApellidoCliente());
-	        cliente.get().setDireccionCliente(clienteUpdate.getDireccionCliente());
-	        cliente.get().setCiudadCliente(clienteUpdate.getCiudadCliente());
-	        cliente.get().setCorreoCliente(clienteUpdate.getCorreoCliente());
-	        cliente.get().setEstadoCliente(clienteUpdate.getEstadoCliente());
+	        cliente.get().setTipo_id(clienteUpdate.getTipo_id());
+	        cliente.get().setDoc_cliente(clienteUpdate.getDoc_cliente());
+	        cliente.get().setNombre_cliente(clienteUpdate.getNombre_cliente());
+	        cliente.get().setApellido_cliente(clienteUpdate.getApellido_cliente());
+	        cliente.get().setDireccion_cliente(clienteUpdate.getDireccion_cliente());
+	        cliente.get().setCiudad_cliente(clienteUpdate.getCiudad_cliente());
+	        cliente.get().setCorreo_cliente(clienteUpdate.getCorreo_cliente());
+	        cliente.get().setEstado_cliente(clienteUpdate.getEstado_cliente());
 
 	        clienteService.save(cliente.get());
 	        return new ResponseEntity<>(cliente.get(), HttpStatus.OK);

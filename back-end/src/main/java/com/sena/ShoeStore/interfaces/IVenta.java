@@ -1,8 +1,8 @@
-package com.sena.shoestore.interfaces;
+package com.sena.ShoeStore.interfaces;
 
 import org.springframework.stereotype.Repository;
 
-import com.sena.shoestore.models.venta;
+import com.sena.ShoeStore.models.venta;
 
 import java.util.List;
 

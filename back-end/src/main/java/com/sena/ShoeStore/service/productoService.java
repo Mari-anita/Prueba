@@ -1,4 +1,4 @@
-package com.sena.shoestore.service;
+package com.sena.ShoeStore.service;
 
 import java.util.List;
 import java.util.Optional;
@@ -6,10 +6,9 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.sena.shoestore.controller.ProductoController;
-import com.sena.shoestore.interfaceService.IProductoService;
-import com.sena.shoestore.interfaces.IProducto;
-import com.sena.shoestore.models.producto;
+import com.sena.ShoeStore.interfaceService.IProductoService;
+import com.sena.ShoeStore.interfaces.IProducto;
+import com.sena.ShoeStore.models.producto;
 
 
 @Service
@@ -19,7 +18,7 @@ public class productoService implements IProductoService{
 
 	@Override
 	public String save(producto producto) {
-		this.producto = producto;
+		//this.producto = producto;
 		data.save(producto);
 		return producto.getId_produc();
 	}
@@ -55,12 +54,6 @@ public class productoService implements IProductoService{
 		producto.setEstado_produc("Inactivo"); 
         data.save(producto); 
 		return 0;
-	}
-
-	@Override
-	public String save(ProductoController producto) {
-		//  Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'save'");
 	}
 
 }

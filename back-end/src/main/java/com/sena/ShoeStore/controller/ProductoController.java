@@ -1,4 +1,4 @@
-package com.sena.shoestore.controller;
+package com.sena.ShoeStore.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,7 +13,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.sena.shoestore.interfaceService.IProductoService;
+import com.sena.ShoeStore.interfaceService.IProductoService;
+import com.sena.ShoeStore.models.producto;
 
 
 
@@ -27,12 +28,12 @@ public class ProductoController {
 	private IProductoService productoService;
 	
 	@PostMapping("/")
-    public ResponseEntity<Object> save(@ModelAttribute("Producto") ProductoController producto) {
+    public ResponseEntity<Object> save(@ModelAttribute("producto") producto producto) {
 
         // verificar que no exista el documento de identidad
         var listaProducto = productoService.findAll()
-                .stream().filter(producto -> ProductoController.getIdProduc()
-                        .equals(Producto.getIdProduc()));
+                .stream().filter(productoExistence -> productoExistence.getId_produc()
+                        .equals(producto.getId_produc()));
         if (listaProducto.count() != 0) {
             return new ResponseEntity<>("El producto ya existe", HttpStatus.BAD_REQUEST);
         }
@@ -40,7 +41,7 @@ public class ProductoController {
         //Añadir campos obligatorios
         //no cambiar nada
 
-        if (producto.getNombre().equals("")) {
+        if (producto.getNombre_produc().equals("")) {
             
             return new ResponseEntity<>("El nombre es un campo obligatorio", HttpStatus.BAD_REQUEST);
         }
@@ -104,19 +105,21 @@ public class ProductoController {
 	}
 	
 	@PutMapping("/{idProducto}")
-	public ResponseEntity<Object> update(@PathVariable String id, @ModelAttribute("producto") ProductoController productoUpdate){
-		var producto=productoService.findOne(id).get();
-		if (producto != null) {
-			producto.setNombre_produc(productoUpdate.getNombre_produc());
-			producto.setDescripcion(productoUpdate.getDescripcion());
-			producto.setCantidad(productoUpdate.getCantidad());
-			producto.setPrecio(productoUpdate.getPrecio());
-			producto.setIva(productoUpdate.getIva());
-			producto.setDescuento(productoUpdate.getDescuento());
-			producto.setEstado_produc(productoUpdate.getEstado_produc());
+	public ResponseEntity<Object> update(@PathVariable String idProducto, @ModelAttribute("producto") producto productoUpdate){
+		var producto = productoService.findOne(idProducto);
+		if (producto.isPresent()) {
+			producto.get().setNombre_produc(productoUpdate.getNombre_produc());
+			producto.get().setDescripcion(productoUpdate.getDescripcion());
+			producto.get().setDescripcion(productoUpdate.getDescripcion());
+			producto.get().setDescripcion(productoUpdate.getDescripcion());
+			producto.get().setCantidad(productoUpdate.getCantidad());
+			producto.get().setPrecio(productoUpdate.getPrecio());
+			producto.get().setIva(productoUpdate.getIva());
+			producto.get().setDescuento(productoUpdate.getDescuento());
+			producto.get().setEstado_produc(productoUpdate.getEstado_produc());
 
-			productoService.save(producto);
-			return new ResponseEntity<>(producto,HttpStatus.OK);
+			productoService.save(producto.get());
+			return new ResponseEntity<>(producto.get(),HttpStatus.OK);
 		}
 		else {
 		return new ResponseEntity<>("Error producto no encontrado",HttpStatus.BAD_REQUEST);

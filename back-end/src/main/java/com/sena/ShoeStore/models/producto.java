@@ -1,4 +1,4 @@
-package com.sena.shoestore.models;
+package com.sena.ShoeStore.models;
 
 import jakarta.persistence.Column;
 
@@ -76,12 +76,30 @@ public class producto {
 		return nombre_produc;
 	}
 
+	public void setNombre_produc(String nombre_produc) {
+		this.nombre_produc = nombre_produc;
+	}
+
+
+	public String getDescripcion() {
+		return descripcion;
+	}
+
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
 
+
 	public String getCantidad() {
 		return cantidad;
+	}
+
+	public void setCantidad(String cantidad) {
+		this.cantidad = cantidad;
+	}
+
+	public String getPrecio() {
+		return precio;
 	}
 
 	public void setPrecio(String precio) {
@@ -90,6 +108,14 @@ public class producto {
 
 	public String getIva() {
 		return iva;
+	}
+
+	public String setIva(String iva) {
+		return iva;
+	}
+
+	public String getDescuento() {
+		return descuento;
 	}
 
 	public void setDescuento(String descuento) {

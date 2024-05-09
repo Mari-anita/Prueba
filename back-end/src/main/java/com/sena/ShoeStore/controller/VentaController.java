@@ -1,4 +1,4 @@
-package com.sena.shoestore.controller;
+package com.sena.ShoeStore.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.sena.shoestore.interfaceService.IVentaService;
-
+import com.sena.ShoeStore.interfaceService.IVentaService;
+import com.sena.ShoeStore.models.venta;
 
 
 
@@ -28,12 +28,12 @@ public class VentaController {
 	private IVentaService ventaService;
 	
 	@PostMapping("/")
-    public ResponseEntity<Object> save(@ModelAttribute("Venta") VentaController venta) {
+    public ResponseEntity<Object> save(@ModelAttribute("venta") venta venta) {
 
         // verificar que no exista el documento de identidad
         var listaVenta = ventaService.findAll()
-                .stream().filter(venta -> VentaController.getId_venta()
-                        .equals(Venta.getId_venta()));
+                .stream().filter(ventaExistence -> ventaExistence.getId_venta()
+                        .equals(venta.getId_venta()));
         if (listaVenta.count() != 0) {
             return new ResponseEntity<>("La venta ya existe", HttpStatus.BAD_REQUEST);
         }
@@ -45,12 +45,12 @@ public class VentaController {
             return new ResponseEntity<>("El id venta es un campo obligatorio", HttpStatus.BAD_REQUEST);
         }
 
-        if (venta.getIddelCliente().equals("")) {
+        if (venta.getTIddelCliente().equals("")) {
             
             return new ResponseEntity<>("El id del cliente es un campo obligatorio", HttpStatus.BAD_REQUEST);
         }
 
-        if (venta.getTotal().equals("")) {
+        if (venta.getTotal_venta().equals("")) {
             
             return new ResponseEntity<>("El total es un campo obligatorio", HttpStatus.BAD_REQUEST);
         }
@@ -79,38 +79,37 @@ public class VentaController {
 
 @GetMapping("/busqueda/{filtro}")
 	public ResponseEntity<Object> findFiltro(@PathVariable String filtro){
-	var listaVenta=ventaService.filtroProducto(filtro); 
+	var listaVenta=ventaService.filtroVenta(filtro); 
 	return new ResponseEntity<>(listaVenta,HttpStatus.OK);
 	}
 	
-	@GetMapping("/{id_venta}")
-	public ResponseEntity<Object> findOne(@PathVariable String id_venta){
-		var venta=ventaService.findOne(id_venta);
+	@GetMapping("/{idVenta}")
+	public ResponseEntity<Object> findOne(@PathVariable String idVenta){
+		var venta=ventaService.findOne(idVenta);
 		return new ResponseEntity<>(venta,HttpStatus.OK);
 	}
 	
-	@DeleteMapping("/{id_venta}")
-	public ResponseEntity<Object> delete(@PathVariable String id_venta){
-		ventaService.delete(id_venta);
+	@DeleteMapping("/{idVenta}")
+	public ResponseEntity<Object> delete(@PathVariable String idVenta){
+		ventaService.delete(idVenta);
 		return new ResponseEntity<>("Registro Dehabilitado",HttpStatus.OK);
 	}
 	
-	@PutMapping("/{id}")
-	public ResponseEntity<Object> update(@PathVariable String id, @ModelAttribute("venta") VentaController ventaUpdate){
-		var venta=ventaService.findOne(id).get();
-		if (venta != null) {
-			venta.setId_venta(ventaUpdate.getId_venta());
-			venta.setId_cliente_venta(ventaUpdate.getId_cliente_venta());
-			venta.setTotal_venta(ventaUpdate.getTotal_venta());
-			venta.setFecha_venta(ventaUpdate.getFecha_venta());
-			venta.setEstado_venta(ventaUpdate.getEstado_venta());
+	@PutMapping("/{idVenta}")
+	public ResponseEntity<Object> update(@PathVariable String idVenta, @ModelAttribute("venta") venta ventaUpdate){
+	    var venta = ventaService.findOne(idVenta);
+	    if (venta.isPresent()) {
+	        venta.get().setId_venta(ventaUpdate.getId_venta());
+	        venta.get().setIddelCliente(ventaUpdate.getTIddelCliente());
+	        venta.get().setTotal_venta(ventaUpdate.getTotal_venta());
+	        venta.get().setFechaVenta(ventaUpdate.getFecha_venta());
+	        venta.get().setEstado_venta(ventaUpdate.getEstado_venta());
 
-			ventaService.save(venta);
-			return new ResponseEntity<>(venta,HttpStatus.OK);
-		}
-		else {
-		return new ResponseEntity<>("Error producto no encontrado",HttpStatus.BAD_REQUEST);
-		}
+	        ventaService.save(venta.get());
+	        return new ResponseEntity<>(venta.get(), HttpStatus.OK);
+	    } else {
+	        return new ResponseEntity<>("Error: venta no encontrado", HttpStatus.BAD_REQUEST);
+	    }
 	}
 
     public String getId_venta() {

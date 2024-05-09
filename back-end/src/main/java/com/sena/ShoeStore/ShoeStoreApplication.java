@@ -1,4 +1,4 @@
-package com.sena.shoestore;
+package com.sena.ShoeStore;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

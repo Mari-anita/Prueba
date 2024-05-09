@@ -1,9 +1,8 @@
-package com.sena.shoestore.models;
+package com.sena.ShoeStore.models;
 import jakarta.persistence.Column;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity(name="venta")
@@ -23,7 +22,7 @@ public class venta {
 	
 	
 	@Id	
-	@GeneratedValue(strategy = GenerationType.UUID)
+	@GeneratedValue
 	@Column(name="id_venta", nullable=false, length = 36)
 	private String id_venta;
 
@@ -57,6 +56,11 @@ public class venta {
 		return id_venta;
 	}
 
+	public void setId_venta(String id_venta) {
+		this.id_venta = id_venta;
+	}
+
+
 	public String getTIddelCliente() {
 		return id_cliente_venta;
 	}
@@ -65,8 +69,8 @@ public class venta {
 		this.id_cliente_venta = id_cliente_venta;
 	}
 
-	public void getTotal_venta(String total_venta) {
-		this.total_venta = total_venta;
+	public String getTotal_venta() {
+		return total_venta;
 	}
 
 	public void setTotal_venta(String total_venta) {

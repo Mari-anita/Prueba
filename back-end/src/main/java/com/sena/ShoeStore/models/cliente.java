@@ -1,4 +1,4 @@
-package com.sena.shoestore.models;
+package com.sena.ShoeStore.models;
 
 import jakarta.persistence.Column;
 

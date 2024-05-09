@@ -1,4 +1,4 @@
-package com.sena.shoestore.service;
+package com.sena.ShoeStore.service;
 
 import java.util.List;
 import java.util.Optional;
@@ -6,9 +6,9 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.sena.shoestore.interfaceService.IClienteService;
-import com.sena.shoestore.interfaces.ICliente;
-import com.sena.shoestore.models.cliente;
+import com.sena.ShoeStore.interfaceService.IClienteService;
+import com.sena.ShoeStore.interfaces.ICliente;
+import com.sena.ShoeStore.models.cliente;
 
 
 
