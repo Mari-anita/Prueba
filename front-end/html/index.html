@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Shoe Store</title>
+    <link href="/docs/5.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
+    <link rel="stylesheet" href="../css/adminlte.css">
+    <link rel="stylesheet" href="../css/adminlte.css.map">
+    <link rel="stylesheet" href="../css/adminlte.min.css">
+    <link rel="stylesheet" href="../css/adminlte.min.css.map">
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <style>
+        body,
+        html {
+            height: 100%;
+            margin: 0;
+            overflow: hidden;
+            /* Para que la imagen ocupe todo el espacio visible */
+        }
+
+        .menu {
+            width: 220px;
+            /* Ancho del menú lateral */
+            height: 100%;
+            background-color: #333;
+            position: fixed;
+            top: 0;
+            left: 0;
+            overflow-y: auto;
+            /* Permite desplazamiento vertical si el contenido es más largo que el menú */
+            padding-top: 20px;
+            z-index: 1;
+            /* Para que esté por encima de la imagen */
+        }
+
+        .menu img {
+            display: block;
+            margin: 0 auto;
+            width: 30%;
+            /* Ancho del logo */
+        }
+
+        .menu ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .menu ul li {
+            padding: 10px;
+        }
+
+        .menu ul li a {
+            color: white;
+            text-decoration: none;
+            display: block;
+            text-align: center;
+        }
+
+        .menu ul li a:hover {
+            background-color: #555;
+        }
+
+        #img {
+            height: 112%;
+            background-image: url("../img/foto1.jpg");
+            background-size: cover;
+            background-position: center;
+            z-index: 0;
+            /* Para que esté detrás del menú */
+        }
+
+        .contenido {
+            margin-left: 220px;
+            /* Alinea el contenido a la derecha del menú */
+            height: 100%;
+            /* Ajusta la altura para que ocupe todo el espacio */
+            padding: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="contenido">
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <div class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1 class="m-0">Dashboard</h1>
+                        </div><!-- /.col -->
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item active">Dashboard v1</li>
+                            </ol>
+                        </div><!-- /.col -->
+                    </div><!-- /.row -->
+                </div><!-- /.container-fluid -->
+            </div>
+            <!-- /.content-header -->
+
+            <!-- Main content -->
+            <section class="content">
+                <div class="container-fluid">
+                    <!-- Small boxes (Stat box) -->
+                    <div class="row">
+                        <div class="col-lg-3 col-6">
+                            <!-- small box -->
+                            <div class="small-box bg-info">
+                                <div class="inner">
+                                    <h3>150</h3>
+
+                                    <p>New Orders</p>
+                                </div>
+                                <div class="icon">
+                                    <i class="ion ion-bag"></i>
+                                </div>
+                                <a href="#" class="small-box-footer">More info <i
+                                        class="fas fa-arrow-circle-right"></i></a>
+                            </div>
+                        </div>
+                        <!-- ./col -->
+                        <div class="col-lg-3 col-6">
+                            <!-- small box -->
+                            <div class="small-box bg-success">
+                                <div class="inner">
+                                    <h3>53<sup style="font-size: 20px">%</sup></h3>
+
+                                    <p>Bounce Rate</p>
+                                </div>
+                                <div class="icon">
+                                    <i class="ion ion-stats-bars"></i>
+                                </div>
+                                <a href="#" class="small-box-footer">More info <i
+                                        class="fas fa-arrow-circle-right"></i></a>
+                            </div>
+                        </div>
+                        <!-- ./col -->
+
+                        <!-- ./col -->
+                        <div class="col-lg-3 col-6">
+                            <!-- small box -->
+                            <div class="small-box bg-danger">
+                                <div class="inner">
+                                    <h3>65</h3>
+
+                                    <p>Unique Visitors</p>
+                                </div>
+                                <div class="icon">
+                                    <i class="ion ion-pie-graph"></i>
+                                </div>
+                                <a href="#" class="small-box-footer">More info <i
+                                        class="fas fa-arrow-circle-right"></i></a>
+                            </div>
+                        </div>
+                        <!-- ./col -->
+                    </div>
+                    <!-- /.row -->
+                    <!-- Main row -->
+                    <div class="row">
+                        <!-- Left col -->
+                        <section class="col-lg-7 connectedSortable">
+                            <!-- Custom tabs (Charts with tabs)-->
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="tab-content p-0">
+                                        <!-- Morris chart - Sales -->
+                                        <div class="chart tab-pane active" id="revenue-chart"
+                                            style="position: relative; height: 300px;">
+                                            <canvas id="revenue-chart-canvas" height="300"
+                                                style="height: 300px;"></canvas>
+                                        </div>
+                                        <div class="chart tab-pane" id="sales-chart"
+                                            style="position: relative; height: 300px;">
+                                            <canvas id="sales-chart-canvas" height="300"
+                                                style="height: 300px;"></canvas>
+                                        </div>
+                                    </div>
+                                </div><!-- /.card-body -->
+                            </div>
+                            <div class="menu">
+                                <div class="container-fluid">
+                                    <br>
+                                    <img src="../img/logo.jpg" alt="" width="60%" style="border-radius: 60%;">
+                                    <br>
+                                </div>
+                                <ul>
+                                    <br>
+                                    <li><a href="../html/crudProducto.html">Productos</a></li>
+                                    <br>
+                                    <li><a href="../html/crudCliente.html">Clientes</a></li>
+                                    <br>
+                                    <li><a href="../html/crudVenta.html">Venta</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <title>Registro Venta</title>
+    <script src="../js/venta.js"></script>
+</head>
+
+<body style="padding-top: 3%; background-color:rgb(251, 251, 251);">
+    <div class="container-sm" style="background-color:rgba(255, 255, 255, 0.695); border-radius: 40px;">
+        <div class="container" style="padding: 7%; color:rgb(0, 0, 0);">
+            <h1 style="padding-top: 5%;"><b>Registrar Venta</b></h1>
+        <div class="row">
+            <div class="col col-xl-6 col-12" style="padding-top:2%;">
+                <label for="">Id del Cliente</label>
+                <input type="text" id="id_cliente_venta" class="form-control" onfocusout="validarIdClienteVenta(this);">
+            </div>
+            <div class="col col-xl-6 col-12" style="padding-top:2%;">
+                <label for="">Total</label>
+                <input type="text" id="total_venta" class="form-control" onfocusout="validarTotalVenta(this);">
+            </div>
+            <div class="col col-xl-6 col-12" style="padding-top:2%;">
+                <label for="">Fecha Venta</label>
+                <input type="number" id="fecha_venta" class="form-control" onfocusout="validarFechaVenta(this);">
+            </div>
+            <div class="col col-xl-6 col-12" style="padding-top:2%;">
+                <label for="estado">Estado</label>
+                <select name=""  id="estado_venta" class="form-select">
+                    <option value="" selected disabled></option>
+                    <option value="Activo">Activo</option>
+                    <option value="Inactivo">Inactivo</option>
+                </select>
+            </div>
+            <div class="buttom" style="padding-top: 3%;">
+                <button class="btn btn-success" onclick="registrarVenta();">Enviar</button>
+                <button class="btn btn-secondary" onclick="limpiar();">Limpiar</button>
+            </div>
+    </div>
+
+</body>
+</html>
