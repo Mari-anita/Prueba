@@ -223,7 +223,7 @@ function deshabilitarCliente(id) {
 function registrarCliente() {
 
     let formData = {
-        "tipo_id": document.getElementById("tipo_id").value,
+        //"tipo_id": document.getElementById("tipo_id").value,
         "doc_cliente": document.getElementById("doc_cliente").value,
         "nombre_cliente": document.getElementById("nombre_cliente").value,
         "apellido_cliente": document.getElementById("apellido_cliente").value,
@@ -265,6 +265,7 @@ function validarCampos() {
     var apellido_cliente = document.getElementById("apellido_cliente");
     var telefono_medico = document.getElementById("telefono_medico");
     var correo_cliente = document.getElementById("correo_cliente");
+    var ciudad_cliente = document.getElementById("ciudad_cliente");
     var direccion_cliente = document.getElementById("direccion_cliente");
 
     return validarNumeroIdentificacion(doc_cliente) && 
@@ -272,6 +273,7 @@ function validarCampos() {
     validarApellidoCliente(apellido_cliente) &&
     validarTelefonoCliente(telefono_cliente) &&
     validarCorreoCliente(correo_cliente) &&
+    validarCiudadCliente(ciudad_cliente) &&
     validarDireccionCliente(direccion_cliente);
 
 
@@ -351,9 +353,39 @@ function validarDireccionCliente(cuadroDireccionCliente) {
     return valido;
 }
 
+function validarCorreoCliente(cuadroCorreoCliente) {
+    var valor = cuadroCorreoCliente.value;
+    var valido = true;
+    if (valor.length < 7 || valor.length > 256) {
+        valido = false
+    }
+
+    if (valido) {
+        cuadroCorreoCliente.className = "form-control is-valid";
+    } else {
+        cuadroCorreoCliente.className = "form-control is-invalid";
+    }
+    return valido;
+}
+
+function validarCiudadCliente(cuadroCiudadCliente) {
+    var valor = cuadroCiudadCliente.value;
+    var valido = true;
+    if (valor.length < 7 || valor.length > 256) {
+        valido = false
+    }
+
+    if (valido) {
+        cuadroCiudadCliente.className = "form-control is-valid";
+    } else {
+        cuadroCiudadCliente.className = "form-control is-invalid";
+    }
+    return valido;
+}
+
 function limpiar() {
-    document.getElementById("tipo_id").value = "";
-    document.getElementById("id_cliente").value = "";
+    //document.getElementById("tipo_id").value = "";
+    //document.getElementById("id_cliente").value = "";
     document.getElementById("doc_cliente").value = "";
     document.getElementById("nombre_cliente").value = "";
     document.getElementById("apellido_cliente").value = "";

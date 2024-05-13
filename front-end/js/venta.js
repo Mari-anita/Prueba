@@ -74,7 +74,7 @@ function listarProducto() {
 
                 let productoIdParaDeshabilitar = result[i]["id_venta"];
                 botonDeshabilitarVenta.onclick = function () {
-                    deshabilitarCliente(productoIdParaDeshabilitar);
+                    deshabilitarVenta(ventaIdParaDeshabilitar);
                 };
 
 
@@ -127,7 +127,7 @@ function actualizarVenta() {
 
     if (validarCampos()) {
         $.ajax({
-            url: url + id_cliente,
+            url: url + id_venta,
             type: "PUT",
             data: formData,
             success: function (result) {
@@ -138,7 +138,7 @@ function actualizarVenta() {
                     icon: "success"
                 });
                 // Puedes hacer algo adicional como recargar la lista de médicos
-                listarProducto();
+                listarVenta();
             },
             error: function (error) {
                 // Manejar el error de la petición
@@ -180,7 +180,7 @@ function deshabilitarVenta(id) {
                         'El registro ha sido deshabilitado.',
                         'success'
                     );
-                    listarProducto(); // Recarga la lista de médicos
+                    listarVenta(); // Recarga la lista de médicos
                 },
                 error: function (error) {
                     Swal.fire(
@@ -234,7 +234,8 @@ function validarCampos() {
     var id_venta = document.getElementById("id_venta");
 
     return validarId(id_venta) && 
-    validarIddelCliente(id_cliente_venta) && 
+    validarIdClienteVenta(id_cliente_venta) && 
+    validarTotalVenta(total_venta) && 
     validarFechaVenta(fecha_venta);
     
 
@@ -243,7 +244,7 @@ function validarCampos() {
 function validarId(cuadroId) {
     var valor = cuadroId.value;
     var valido = true;
-    if (valor.length < 5 || valor.length > 11) {
+    if (valor.length < 1 || valor.length > 11) {
         valido = false
     }
 
@@ -255,17 +256,32 @@ function validarId(cuadroId) {
     return valido;
 }
 
-function validarIddelCliente(cuadroIddelCliente) {
-    var valor = cuadroIddelCliente.value;
+function validarIdClienteVenta(cuadroIdClienteVenta) {
+    var valor = cuadroIdClienteVenta.value;
     var valido = true;
     if (valor.length < 0 || valor.length > 21) {
         valido = false
     }
 
     if (valido) {
-        cuadroIddelCliente.className = "form-control is-valid";
+        cuadroIdClienteVenta.className = "form-control is-valid";
     } else {
-        cuadroIddelCliente.className = "form-control is-invalid";
+        cuadroIdClienteVenta.className = "form-control is-invalid";
+    }
+    return valido;
+}
+
+function validarTotalVenta(cuadroTotalVenta) {
+    var valor = cuadroTotalVenta.value;
+    var valido = true;
+    if (valor.length < 0 || valor.length > 16) {
+        valido = false
+    }
+
+    if (valido) {
+        cuadroTotalVenta.className = "form-control is-valid";
+    } else {
+        cuadroTotalVenta.className = "form-control is-invalid";
     }
     return valido;
 }

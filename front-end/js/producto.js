@@ -83,7 +83,7 @@ function listarProducto() {
 
                 let productoIdParaDeshabilitar = result[i]["id_cliente"];
                 botonDeshabilitarProducto.onclick = function () {
-                    deshabilitarCliente(productoIdParaDeshabilitar);
+                    deshabilitarProducto(productoIdParaDeshabilitar);
                 };
 
 
@@ -142,7 +142,7 @@ function actualizarProducto() {
 
     if (validarCampos()) {
         $.ajax({
-            url: url + id_cliente,
+            url: url + id_produc,
             type: "PUT",
             data: formData,
             success: function (result) {
@@ -213,7 +213,7 @@ function deshabilitarProducto(id) {
 function registrarProducto() {
 
     let formData = {
-        "id_produc": document.getElementById("id_produc").value,
+        //"id_produc": document.getElementById("id_produc").value,
         "nombre_produc": document.getElementById("nombre_produc").value,
         "descripcion": document.getElementById("descripcion").value,
         "cantidad": document.getElementById("cantidad").value,
@@ -249,34 +249,36 @@ function registrarProducto() {
 
 //validación número de documento medico
 function validarCampos() {
-    var id_produc = document.getElementById("id_produc");
+    //var id_produc = document.getElementById("id_produc");
     var nombre = document.getElementById("nombre");
 
-    return validarId(id_produc) && 
-    validarNombre(nombre) && 
+    return //validarId(id_produc) && 
+    validarNombreProduc(nombre) && 
     validarDescripcion(descripcion) &&
     validarIva(iva) &&
+    validarCantidad(cantidad) &&
+    validarPrecio(precio) &&
     validarDescuento(descuento);
     
 
 
 }
-function validarId(cuadroId) {
-    var valor = cuadroId.value;
-    var valido = true;
-    if (valor.length < 5 || valor.length > 11) {
-        valido = false
-    }
+//*function validarId(cuadroId) {
+    //*var valor = cuadroId.value;
+    //*var valido = true;
+    //*if (valor.length < 5 || valor.length > 11) {
+      //*  valido = false
+   //* }
 
-    if (valido) {
-        cuadroNumero.className = "form-control is-valid";
-    } else {
-        cuadroNumero.className = "form-control is-invalid";
-    }
-    return valido;
-}
+    //*if (valido) {
+        //*cuadroNumero.className = "form-control is-valid";
+    //*} else {
+        //*cuadroNumero.className = "form-control is-invalid";
+    //*}
+    //*return valido;
+//*}//
 
-function validarNombre(cuadroNombre) {
+function validarNombreProduc(cuadroNombre) {
     var valor = cuadroNombre.value;
     var valido = true;
     if (valor.length < 3 || valor.length > 21) {
@@ -321,9 +323,54 @@ function validarPrecio(cuadroPrecio) {
     return valido;
 }
 
+function validarDescripcion(cuadroDescripcion) {
+    var valor = cuadroDescripcion.value;
+    var valido = true;
+    if (valor.length < 1 || valor.length > 21) {
+        valido = false
+    }
+
+    if (valido) {
+        cuadroDescripcion.className = "form-control is-valid";
+    } else {
+        cuadroDescripcion.className = "form-control is-invalid";
+    }
+    return valido;
+}
+
+function validarIva(cuadroIva) {
+    var valor = cuadroIva.value;
+    var valido = true;
+    if (valor.length < 1 || valor.length > 20) {
+        valido = false
+    }
+
+    if (valido) {
+        cuadroIva.className = "form-control is-valid";
+    } else {
+        cuadroIva.className = "form-control is-invalid";
+    }
+    return valido;
+}
+
+function validarDescuento(cuadroDescuento) {
+    var valor = cuadroDescuento.value;
+    var valido = true;
+    if (valor.length < 1 || valor.length >= 100) {
+        valido = false
+    }
+
+    if (valido) {
+        cuadroDescuento.className = "form-control is-valid";
+    } else {
+        cuadroDescuento.className = "form-control is-invalid";
+    }
+    return valido;
+}
+
 function limpiar() {
     document.getElementById("nombre_produc").value = "";
-    document.getElementById("id_produc").value = "";
+    //document.getElementById("id_produc").value = "";
     document.getElementById("descripcion").value = "";
     document.getElementById("cantidad").value = "";
     document.getElementById("precio").value = "";
